@@ -212,7 +212,6 @@ app.get('/app/', (req,res) => {
       res.end(res.statusCode+ ' ' +res.statusMessage);
 })
 
-
 // endpoint from video
 app.post('/app/flip/coins/', (req,res) => {
     const flips = coinFlips(req.body.number)
