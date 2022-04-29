@@ -15,6 +15,17 @@ const db = require("./src/services/database")
 // get user input arguments
 const args = require('minimist')(process.argv.slice(2))
 
+// Add cors dependency
+const cors = require('cors')
+// Set up cors middleware on all endpoints
+app.use(cors())
+
+// Serve static HTML files
+app.use(express.static('./public'));
+
+// Make Express use its own built-in body parser to handle JSON
+app.use(express.json());
+
 
 args["debug"] || false
 var debug = args.debug
@@ -195,4 +206,12 @@ app.get('/app/', (req,res) => {
       res.statusMessage = 'OK';
       res.writeHead(res.statusCode, {'Content-Type' : 'text/plain'});
       res.end(res.statusCode+ ' ' +res.statusMessage);
+})
+
+
+// endpoint from video
+app.post('/app/flip/coins/', (req,res) => {
+    const flips = coinFlips(req.body.number)
+    const count = countFlips(flips)
+    res.status(200).json({"raw": flips, "summary":count})
 })
