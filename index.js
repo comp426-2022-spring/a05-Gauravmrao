@@ -10,7 +10,7 @@ const morgan = require('morgan')
 
 // require database stuff
 const fs = require ('fs')
-const db = require("./database.js")
+const db = require("./src/services/database")
 
 // get user input arguments
 const args = require('minimist')(process.argv.slice(2))
