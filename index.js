@@ -23,8 +23,12 @@ app.use(cors())
 // Serve static HTML files
 app.use(express.static('./public'));
 
+
 // Make Express use its own built-in body parser to handle JSON
 app.use(express.json());
+
+// allow url encoded endpoints
+app.use(express.urlencoded({ extended: true }))
 
 
 args["debug"] || false
